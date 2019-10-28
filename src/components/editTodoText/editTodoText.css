@@ -1,0 +1,15 @@
+.todo-text {
+  padding: 5px;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+}
+
+.todo-text span {
+  color: black;
+}
+
+.edit-todos {
+  margin: 5px 0;
+  display: flex;
+  justify-content: flex-end;
+}

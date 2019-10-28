@@ -1,0 +1,33 @@
+#list-item-container {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-list-item {
+  border: 1px slateblue solid;
+  border-radius: 5px;
+  padding: 2px;
+  margin-top: 10px;
+}
+
+.todo-status {
+  display: flex;
+  justify-content: space-between;
+}
+.todo-status span {
+  color: teal
+}
+.username,
+.user-email {
+  font-size: 16px;
+}
+
+.username b,
+.user-email b {
+  color: tomato
+}
+
+.username span,
+.user-email span {
+  color: #000000;
+}
