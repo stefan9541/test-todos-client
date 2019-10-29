@@ -23,7 +23,7 @@ class TodoList extends Component {
     parseParams.developer = "Stepan";
 
     fetchTodoeDataRequest();
-    axios.get("http://localhost:8080/~shapoval/test-task-backend/v2/",
+    axios.get("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/",
       { params: { ...parseParams } })
       .then(({ data }) => { fetchTodoDataSuccess(data) })
       .catch(err => fetchTodoDataFailure(err));
