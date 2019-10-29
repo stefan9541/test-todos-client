@@ -28,7 +28,7 @@ class EditTodoStatus extends Component {
     this.setState({ done: e.target.checked }, () => {
       const { todoId, userLogout } = this.props;
       const { done } = this.state;
-      axios.post("http://localhost:8080/~shapoval/test-task-backend/v2/edit", { done, todoId },
+      axios.post("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/edit", { done, todoId },
         { withCredentials: true })
         .then(({ date }) => {
           this.success();

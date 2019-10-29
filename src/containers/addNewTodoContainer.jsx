@@ -45,7 +45,7 @@ class AddNewTodoContainer extends Component {
         }
       });
     } else {
-      axios.post("http://localhost:8080/~shapoval/test-task-backend/v2/create", { values },
+      axios.post("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/create", { values },
         { withCredentials: true })
         .then(({ data }) => {
           this.hide();

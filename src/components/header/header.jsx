@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Menu } from "antd"
+import { Row, Col, Menu, message } from "antd"
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose, bindActionCreators } from "redux";
@@ -22,7 +22,7 @@ class Header extends React.Component {
     } = this.props;
 
     fetchUserRequst();
-    axios.post("http://localhost:8080/~shapoval/test-task-backend/v2/ajax_bz", {},
+    axios.post("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/ajax_bz", {},
       { withCredentials: true })
       .then(({ data }) => {
         fetchUserSuccess(data);
@@ -38,11 +38,14 @@ class Header extends React.Component {
 
   logOut = () => {
     const { userLogout, history } = this.props;
-    axios.post("http://localhost:8080/~shapoval/test-task-backend/v2/logOut", {},
+    axios.post("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/logOut", {},
       { withCredentials: true })
       .then(res => {
         userLogout();
         history.push("/login");
+      })
+      .catch(err => {
+        message("Smth wrong bad plz try later")
       })
   }
 

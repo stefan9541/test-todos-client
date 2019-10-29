@@ -18,7 +18,7 @@ class LoginPageContainer extends Component {
     e.preventDefault();
     fetchUserRequst();
     if (!err) {
-      axios.post("http://localhost:8080/~shapoval/test-task-backend/v2/login", { values }, { withCredentials: true })
+      axios.post("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/login", { values }, { withCredentials: true })
         .then(({ data }) => {
           history.push("/");
           fetchUserSuccess(data);
