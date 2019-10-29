@@ -6,8 +6,7 @@ import {
 } from "react-router-dom";
 import Header from "../header";
 import LoginPageContainer from "../../containers/loginPageContainer";
-import TodoList from '../todoList';
-import HeaderPanel from "../headerPanel"
+import HomePage from "../homePage"
 
 import 'antd/dist/antd.css';
 
@@ -16,10 +15,9 @@ function App() {
     <Router>
 
       <Header />
-      <HeaderPanel />
 
       <Switch>
-        <Route path="/" exact component={TodoList} />
+        <Route path="/" exact component={HomePage} />
         <Route path="/login" exact component={LoginPageContainer} />
       </Switch>
     </Router>

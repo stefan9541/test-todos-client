@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Button, Input, message } from "antd";
+import { userLogout } from "../../actions/user-actions";
+import axios from "axios";
 
 import "./editTodoText.css";
 
@@ -12,19 +14,19 @@ class EditTodoText extends Component {
     edit: false,
     textAreaValue: "",
   };
-
   success = () => {
-    message.success("Todo successfully added");
+    message.success("Успешно отредактировано");
   };
 
   error = () => {
-    message.error("smth wrong plz try again");
+    message.error("Редактирование доступно только Авторизованным пользователям");
   };
 
   handleEditClick = () => {
-    const { text } = this.props;
+    const { text, user } = this.props;
     const { textAreaValue } = this.state;
     const value = (textAreaValue) ? textAreaValue : text;
+    if (!user) return this.error();
     this.setState({
       edit: true,
       textAreaValue: value
@@ -40,19 +42,38 @@ class EditTodoText extends Component {
   }
 
   handleSubmit = () => {
-    const { user } = this.props;
-    console.log(user);
+    const { user, text, todoId, userLogout } = this.props;
+    const { textAreaValue } = this.state;
+    if (!user) {
+      this.error();
+      this.handleClose(false);
+      return;
+    };
+    if (text === textAreaValue) {
+      this.handleClose(false);
+      return;
+    };
+    axios.post("http://localhost:8080/~shapoval/test-task-backend/v2/edit", { textAreaValue, todoId },
+      { withCredentials: true })
+      .then(({ date }) => {
+        this.success();
+        this.handleClose();
+      })
+      .catch(err => {
+        userLogout();
+        this.error();
+        this.handleClose();
+      });
   }
 
   render() {
-    const { text } = this.props
+    const { text, editByAdmin } = this.props
     const { edit, textAreaValue } = this.state;
     const saveCancelBlock = (
-      <React.Fragment>
+      <div>
         <Button
           htmlType="submit"
           onClick={() => this.handleSubmit()}
-          // onClick={() => this.handleClose(false)}
           icon="check"
           type="primary"
         />
@@ -62,7 +83,7 @@ class EditTodoText extends Component {
           icon="close"
           type="danger"
         />
-      </React.Fragment>
+      </div>
     );
     const openEditBlock = (
       <Button icon="edit" onClick={this.handleEditClick} />
@@ -84,6 +105,12 @@ class EditTodoText extends Component {
         </div>
         <div className="edit-todos">
           {
+            (editByAdmin)
+              ? <span style={{ flex: 1 }}>
+                Отредактировано Админастратором
+              </span> : null
+          }
+          {
             (edit)
               ? saveCancelBlock
               : openEditBlock
@@ -100,6 +127,10 @@ const mapStateToProps = (state) => {
   }
 };
 
+const mapDispatchToProps = {
+  userLogout
+}
+
 export default compose(
-  connect(mapStateToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(EditTodoText);

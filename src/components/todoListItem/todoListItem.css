@@ -10,13 +10,6 @@
   margin-top: 10px;
 }
 
-.todo-status {
-  display: flex;
-  justify-content: space-between;
-}
-.todo-status span {
-  color: teal
-}
 .username,
 .user-email {
   font-size: 16px;

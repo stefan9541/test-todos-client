@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Menu } from "antd"
-import { Link, withRouter } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose, bindActionCreators } from "redux";
 import * as userAction from "../../actions/user-actions";
@@ -42,29 +42,29 @@ class Header extends React.Component {
       { withCredentials: true })
       .then(res => {
         userLogout();
-        history.push("/");
+        history.push("/login");
       })
   }
 
   render() {
-    const { user } = this.props;
+    const { user, location: { pathname } } = this.props;
     return (
       <Row type="flex" justify="center">
         <Col span={6}>
-          <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" >
+          <Menu mode="horizontal" >
             <Menu.Item key="/">
-              <Link to="/">
+              <NavLink exact activeStyle={{color: "tomato"}} to="/">
                 Todos
-              </Link>
+              </NavLink >
             </Menu.Item>
             <Menu.Item key="login">
               {
                 (user) ?
                   <span onClick={this.logOut}>Выйти</span>
                   :
-                  <Link to="/login">
+                  <NavLink activeStyle={{color: "tomato"}} to="/login">
                     Войти
-                  </Link>
+                  </NavLink >
               }
             </Menu.Item>
           </Menu>

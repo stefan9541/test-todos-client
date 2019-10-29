@@ -1,0 +1,7 @@
+.todo-status {
+  display: flex;
+  justify-content: space-between;
+}
+.todo-status span {
+  color: teal
+}
