@@ -53,7 +53,7 @@ class EditTodoText extends Component {
       this.handleClose(false);
       return;
     };
-    axios.post("http://localhost:8080/~shapoval/test-task-backend/v2/edit", { textAreaValue, todoId },
+    axios.post("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/edit", { textAreaValue, todoId },
       { withCredentials: true })
       .then(({ date }) => {
         this.success();
