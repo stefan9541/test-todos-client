@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Menu, message } from "antd"
-import { Link, NavLink, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose, bindActionCreators } from "redux";
 import * as userAction from "../../actions/user-actions";
@@ -10,10 +10,6 @@ import axios from "axios";
 import "./header.css";
 
 class Header extends React.Component {
-
-  state = {
-    current: "/",
-  };
 
   componentDidMount() {
     const {
@@ -30,12 +26,6 @@ class Header extends React.Component {
       .catch(err => console.log(err))
   }
 
-  handleClick = e => {
-    this.setState({
-      current: e.key,
-    });
-  };
-
   logOut = () => {
     const { userLogout, history } = this.props;
     axios.post("https://test-task-todos.herokuapp.com/~shapoval/test-task-backend/v2/logOut", {},
@@ -50,7 +40,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { user, location: { pathname } } = this.props;
+    const { user } = this.props;
     return (
       <Row type="flex" justify="center">
         <Col span={6}>
@@ -60,12 +50,12 @@ class Header extends React.Component {
                 Todos
               </NavLink >
             </Menu.Item>
-            <Menu.Item key="login">
+            <Menu.Item key="/login">
               {
                 (user) ?
                   <span onClick={this.logOut}>Выйти</span>
                   :
-                  <NavLink activeStyle={{color: "tomato"}} to="/login">
+                  <NavLink exact activeStyle={{color: "tomato"}} to="/login">
                     Войти
                   </NavLink >
               }

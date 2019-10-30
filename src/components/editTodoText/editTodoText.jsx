@@ -14,6 +14,7 @@ class EditTodoText extends Component {
     edit: false,
     textAreaValue: "",
   };
+  
   success = () => {
     message.success("Успешно отредактировано");
   };
@@ -35,11 +36,11 @@ class EditTodoText extends Component {
 
   handleClose = (edit) => {
     this.setState({ edit });
-  }
+  };
 
   handleChange = (e) => {
     this.setState({ textAreaValue: e.target.value });
-  }
+  };
 
   handleSubmit = () => {
     const { user, text, todoId, userLogout } = this.props;
@@ -64,7 +65,7 @@ class EditTodoText extends Component {
         this.error();
         this.handleClose();
       });
-  }
+  };
 
   render() {
     const { text, editByAdmin } = this.props
@@ -87,7 +88,8 @@ class EditTodoText extends Component {
     );
     const openEditBlock = (
       <Button icon="edit" onClick={this.handleEditClick} />
-    )
+    );
+
     return (
       <React.Fragment>
         <div className="todo-text">
@@ -107,8 +109,8 @@ class EditTodoText extends Component {
           {
             (editByAdmin)
               ? <span style={{ flex: 1 }}>
-                Отредактировано Админастратором
-              </span> : null
+                  Отредактировано Админастратором
+                </span> : null
           }
           {
             (edit)
