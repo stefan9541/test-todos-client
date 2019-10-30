@@ -37,7 +37,9 @@ const SortPanel = (props) => {
   return (
     <Col>
       <Form onSubmit={handleSubmit}>
+
         <span>Сортировать по</span>
+        
         <Form.Item style={{ marginBottom: "0px" }}>
           {getFieldDecorator("sortField", {
             initialValue: valueForSortField,
