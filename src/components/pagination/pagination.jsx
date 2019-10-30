@@ -4,6 +4,7 @@ import { Pagination, Col, Icon, Row } from "antd";
 import qstr from "query-string";
 
 const PaginationComponent = (props) => {
+  
   const itemRender = (current, type) => {
     const { location: { pathname, search } } = props;
     const searchParam = qstr.parse(search);
