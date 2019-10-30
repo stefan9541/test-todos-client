@@ -21,7 +21,7 @@ const AddNewTodoForm = (props) => {
           })(
             <Input
               placeholder="Username"
-            />,
+            />
           )}
         </Form.Item>
         <Form.Item>
@@ -29,7 +29,7 @@ const AddNewTodoForm = (props) => {
             rules: [{
               required: true,
               message: ["Поле является обязательным для заполнения"],
-            }],
+            }]
           })(
             <Input
               placeholder="email"
@@ -43,16 +43,13 @@ const AddNewTodoForm = (props) => {
             <TextArea
               autoSize={{ minRows: 3, maxRows: 10 }}
               placeholder="text"
-            />,
+            />
           )}
         </Form.Item>
 
-        <Button
-          // onClick={handleHide}
-          htmlType="submit"
-        >
+        <Button htmlType="submit">
           Добавить
-          </Button>
+        </Button>
       </Form>
     </Col>
   );
